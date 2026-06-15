@@ -1,0 +1,26 @@
+        processor 6502
+        include "mapping.dasm"
+
+        org $1000
+
+start:
+        jsr set_colors
+
+wait_frame:
+        lda RASTER
+        cmp #$ff
+        bne wait_frame
+
+        lda BGCOL0
+        clc
+        adc #$01
+        and #$0f
+        sta BGCOL0
+        jmp wait_frame
+
+set_colors:
+        lda #$00
+        sta EXTCOL
+        lda #$06
+        sta BGCOL0
+        rts
