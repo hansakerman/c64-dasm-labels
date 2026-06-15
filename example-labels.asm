@@ -1,5 +1,5 @@
         processor 6502
-        include "mapping.dasm"
+        include "mapping.asm"
 
         org $1000
 
